@@ -8,6 +8,11 @@ urlpatterns = patterns('',
     (r'^tiny_mce/(?P<path>.*)$', 'django.views.static.serve',
              { 'document_root': 'tiny_mce' }),
     (r'^search/$', 'cms.search.views.search'),
-    (r'^weblog/', include('coltrane.urls')),
+
+    (r'^weblog/categories/', include('coltrane.urls.categories')),
+    (r'^weblog/links/', include('coltrane.urls.links')),
+    (r'^weblog/tags/', include('coltrane.urls.tags')),
+    (r'^weblog/', include('coltrane.urls.entries')),
+
     (r'', include('django.contrib.flatpages.urls')),
 )
