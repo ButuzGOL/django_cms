@@ -23,5 +23,9 @@ urlpatterns = patterns('',
     (r'^feeds/(?P<url>.*)/$', 'django.contrib.syndication.views.feed',
      { 'feed_dict': feeds }),
 
+    (r'^snippets/', include('cab.urls.snippets')),
+    (r'^languages/', include('cab.urls.languages')),
+    (r'^popular/', include('cab.urls.popular')),
+
     (r'', include('django.contrib.flatpages.urls')),
 )

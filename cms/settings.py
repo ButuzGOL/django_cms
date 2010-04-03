@@ -81,6 +81,7 @@ INSTALLED_APPS = (
     'tagging',
     'django.contrib.comments',
     'django.contrib.markup',
+    'cab',
 )
 
 DELICIOUS_USER = 'butuzgol'

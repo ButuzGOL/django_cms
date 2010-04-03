@@ -5,6 +5,7 @@
         <data xmlns="http://nbpython.dev.java.net/ns/php-project/1">
             <name>Django_cms</name>
             <sources>
+                <root id="src.cab.dir"/>
                 <root id="src.coltrane.dir"/>
                 <root id="cms.dir"/>
             </sources>
