@@ -1,0 +1,14 @@
+<html>
+  <head>
+    <title>{% if add %}Add a{% else %}Edit your{% endif %} snippet</title>
+  </head>
+  <body>
+    <h1>{% if add %}Add a{% else %}Edit your{% endif %} snippet</h1>
+    <p>Use the form below to {% if add %}add{% else %}edit {% endif %}
+        your snippet; all fields are required</p>
+    <form method="post" action="">
+       {{ form.as_p }}
+       <p><input type="submit" value="Send"></p>
+    </form>
+  </body>
+</html>
