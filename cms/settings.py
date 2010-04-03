@@ -4,7 +4,7 @@ DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
-    # ('Your Name', 'your_email@domain.com'),
+    # ('ButuzGOL', 'ButuzGOL@gmail.com'),
 )
 
 MANAGERS = ADMINS
@@ -79,7 +79,11 @@ INSTALLED_APPS = (
     'cms.search',
     'coltrane',
     'tagging',
+    'django.contrib.comments',
+    'django.contrib.markup',
 )
 
 DELICIOUS_USER = 'butuzgol'
 DELICIOUS_PASSWORD = 'mother89'
+
+AKISMET_API_KEY = 'f35898843950'
