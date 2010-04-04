@@ -25,6 +25,7 @@ urlpatterns = patterns('',
 
     (r'^snippets/', include('cab.urls.snippets')),
     (r'^languages/', include('cab.urls.languages')),
+    (r'^bookmarks/', include('cab.urls.bookmarks')),
     (r'^popular/', include('cab.urls.popular')),
 
     (r'', include('django.contrib.flatpages.urls')),

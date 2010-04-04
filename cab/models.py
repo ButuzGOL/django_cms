@@ -10,6 +10,8 @@ import datetime
 
 from cab import managers
 
+from django.db.models import Sum
+
 class Language(models.Model):
     name = models.CharField(max_length=100)
     slug = models.SlugField(unique=True)
@@ -67,3 +69,44 @@ class Snippet(models.Model):
 
     objects = managers.SnippetManager()
 
+class Bookmark(models.Model):
+
+    snippet = models.ForeignKey(Snippet)
+    user = models.ForeignKey(User, related_name='cab_bookmarks')
+    date = models.DateTimeField(editable=False)
+
+    class Meta:
+        ordering = ['-date']
+
+    def __unicode__(self):
+        return "%s bookmarked by %s" % (self.snippet, self.user)
+
+    def save(self):
+        if not self.id:
+            self.date = datetime.datetime.now()
+        super(Bookmark, self).save()
+
+class Rating(models.Model):
+    RATING_UP = 1
+    RATING_DOWN = -1
+    RATING_CHOICES = ((RATING_UP, 'useful'),
+                      (RATING_DOWN, 'not useful'))
+
+    snippet = models.ForeignKey(Snippet)
+    user = models.ForeignKey(User, related_name='cab_rating')
+    rating = models.IntegerField(choices=RATING_CHOICES)
+    date = models.DateTimeField()
+
+    def __unicode__(self):
+        return "%s rating %s (%s)" % (self.user, self.snippet,
+                                      self.get_rating_display())
+    def save(self):
+        if not self.id:
+            self.date = datetime.datetime.now()
+        super(Rating, self).save()
+
+    def get_score(self):
+        return self.rating_set.aggregate(Sum('rating'))
+
+    def top_rated(self):
+        return self.annotate(score=Sum('rating')).order_by('score')
